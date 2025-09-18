@@ -1,4 +1,4 @@
-import ReportPage from "./pages/ReportPage";
+import ReportPage from "./pages/report/Index";
 
 function App() {
   return <ReportPage />;

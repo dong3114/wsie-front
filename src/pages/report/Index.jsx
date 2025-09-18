@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UploadForm from "../components/UploadForm";
+import UploadForm from "../../components/uploadforms/UploadForm";
 
 function ReportPage() {
   const [report, setReport] = useState(null);

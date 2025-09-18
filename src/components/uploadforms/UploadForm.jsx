@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { analyzeImage } from "../services/api";
+import { analyzeImage } from "../../services/api";
 
 function UploadForm({ setReport }) {
   const [file, setFile] = useState(null);
