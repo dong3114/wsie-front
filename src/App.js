@@ -1,11 +1,7 @@
-import './App.css';
+import ReportPage from "./pages/ReportPage";
 
 function App() {
-  return (
-    <div>
-      <h1>메인 화면</h1>
-    </div>
-  );
+  return <ReportPage />;
 }
 
 export default App;
