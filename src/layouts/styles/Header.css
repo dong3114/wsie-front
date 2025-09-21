@@ -1,0 +1,29 @@
+.site-header{ background:var(--bar); border-bottom:1px solid var(--hair); }
+.header-inner{ height:120px; display:flex; align-items:center; gap:var(--gap); }
+.logo{ font-size:48px; font-weight:900; letter-spacing:-.5px; color:#8B4D2E; }
+
+.nav{
+  display:flex; gap:56px;
+  margin-left:auto; margin-right:auto;
+  font-weight:700; color:#fff; letter-spacing:.5px;
+}
+.nav a{ opacity:.95; }
+.nav a:hover{ opacity:1; text-decoration:underline; }
+
+.btn{
+  height:56px; padding:0 28px; border-radius:999px; border:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-weight:800; cursor:pointer;
+}
+.btn-login{ background:var(--cta); color:var(--white); }
+
+/* 야매 반응형(필요 최소만) */
+@media (max-width:1280px){
+  .header-inner{ height:96px; }
+  .logo{ font-size:36px; }
+  .nav{ gap:32px; }
+  .btn{ height:48px; }
+}
+@media (max-width:920px){
+  .nav{ display:none; } /* 급한 상황: 네비 숨김 */
+}
