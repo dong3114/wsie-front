@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import Header from "../layouts/Header";
-import Footer from "../layouts/Footer";
+import Header from "../layouts/header";
+import Footer from "../layouts/footer";
 
 import ReportPage from "../pages/report/Index";
 import MenuPage from "../pages/menu/Index";   
