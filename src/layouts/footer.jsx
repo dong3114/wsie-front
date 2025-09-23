@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles/Footer.css";
-import { setTheme } from "../utils/Theme"; // 경로 유지
+import { useNavigate, useLocation } from "react-router-dom";
+import { HomeIcon, ServiceIcon, ReportsIcon, HistoryIcon } from "../components/icons/SystemIcons";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // FAB state
   const [open, setOpen] = useState(false);
   const fabRef = useRef(null);
 
@@ -18,30 +23,18 @@ export default function Footer() {
     };
   }, []);
 
-  const themes = [
-    { id: "peach",    label: "Peach",    swatch: "#FDC4AC" },
-    { id: "teal",     label: "Teal",     swatch: "#76A9B2" },
-    { id: "dark",     label: "Dark",     swatch: "#1E2A2A" },
-
-    { id: "sunset",   label: "Sunset",   swatch: "#E59A2A" },
-    { id: "sand",     label: "Sand",     swatch: "#EADCC8" },
-    { id: "navy",     label: "Navy",     swatch: "#2F436B" },
-    { id: "chestnut", label: "Chestnut", swatch: "#8B3F0B" },
-    { id: "forest",   label: "Forest",   swatch: "#13331D" },
-    { id: "olive",    label: "Olive",    swatch: "#6F7F3A" },
-    { id: "stone",    label: "Stone",    swatch: "#D8D6CF" },
-    { id: "deep-teal",label: "Deep Teal",swatch: "#3F6768" },
-    { id: "sky",      label: "Sky",      swatch: "#78AFC4" },
-    { id: "mint",     label: "Mint",     swatch: "#DFFFD0" },
-    { id: "rose",     label: "Rose",     swatch: "#F2B2D8" },
-    { id: "copper",   label: "Copper",   swatch: "#BF6A2A" },
+  // 퀵 메뉴 항목 (필요 시 추가/수정)
+  const items = [
+  { label: "Home",    to: "/",        icon: <HomeIcon /> },
+  { label: "Service", to: "/files",    icon: <ServiceIcon /> },
+  { label: "Reports", to: "/recipes",  icon: <ReportsIcon /> },
+  { label: "History", to: "/analyze",  icon: <HistoryIcon /> },
   ];
 
-  const current = document.documentElement.getAttribute("data-theme") || "peach";
+  const go = (to) => { navigate(to); setOpen(false); };
 
   return (
     <>
-      {/* 기존 푸터 그리드: 햄버거 제거, SIGN UP만 유지 */}
       <footer className="site-footer">
         <div className="container footer-inner">
           <div className="footer-grid">
@@ -72,13 +65,13 @@ export default function Footer() {
         </div>
       </footer>
 
-      {/* 뷰포트 고정 FAB + 오버레이 + 메뉴 (기존 컴포넌트 내부에 포함) */}
-      {open && <div className="theme-fab__backdrop" onClick={() => setOpen(false)} />}
-      <div className={`theme-fab ${open ? "is-open" : ""}`} ref={fabRef}>
+      {/* 뷰포트 고정 Quick FAB */}
+      {open && <div className="quick-fab__backdrop" onClick={() => setOpen(false)} />}
+      <div className={`quick-fab ${open ? "is-open" : ""}`} ref={fabRef}>
         <button
           type="button"
-          className="theme-fab__btn"
-          aria-label="Theme menu"
+          className="quick-fab__btn"
+          aria-label="Quick menu"
           aria-expanded={open}
           onClick={() => setOpen(v => !v)}
         >
@@ -86,18 +79,17 @@ export default function Footer() {
         </button>
 
         {open && (
-          <ul className="theme-fab__menu" role="menu">
-            {themes.map(t => (
-              <li key={t.id} role="none">
+          <ul className="quick-fab__menu" role="menu" aria-label="빠른 이동">
+            {items.map((it) => (
+              <li key={it.to} role="none">
                 <button
                   type="button"
-                  role="menuitemradio"
-                  aria-checked={current === t.id}
-                  className={`theme-item ${current === t.id ? "is-active" : ""}`}
-                  onClick={() => { setTheme(t.id); setOpen(false); }}
+                  role="menuitem"
+                  className={`qitem ${location.pathname === it.to ? "is-active" : ""}`}
+                  onClick={() => go(it.to)}
                 >
-                  <span className="swatch" style={{ background: t.swatch }} />
-                  {t.label}
+                  <span className="qitem__icon" aria-hidden>{it.icon}</span>
+                  <span className="qitem__label">{it.label}</span>
                 </button>
               </li>
             ))}
