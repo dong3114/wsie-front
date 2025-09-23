@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UploadForm from "../../components/uploadforms/UploadForm";
 
-function ReportPage() {
+function FileUpload() {
   const [report, setReport] = useState(null);
 
   return (
@@ -21,4 +21,4 @@ function ReportPage() {
   );
 }
 
-export default ReportPage;
+export default FileUpload;
