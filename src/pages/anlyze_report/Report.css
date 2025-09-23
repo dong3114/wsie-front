@@ -80,3 +80,10 @@
   .field-label{ min-width: auto; margin-bottom: 6px }
   .pill{ border-radius: 16px }
 }
+
+.report-text {
+  white-space: pre-line; /* 문자열에 들어있는 \n 줄바꿈 그대로 보존 */
+  line-height: 1.5;
+  margin: 4px 0;
+}
+
