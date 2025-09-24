@@ -39,7 +39,7 @@ export default function Dropzone({ hasFile, previewUrl, file, onPick, onDropFile
       {!hasFile && (
         <div className="loader-center">
           <div className="loader">
-            <span>S</span><span>c</span><span>a</span><span>n</span>
+            <span>Sc</span><span>an</span><span>ni</span><span>ng</span>
           </div>
           <p className="hint">이미지를 드래그하거나 클릭해서 업로드</p>
         </div>
